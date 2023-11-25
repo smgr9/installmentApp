@@ -5,12 +5,10 @@ import 'package:first_temp/features/add_customer/presentation/manger/read_debtor
 import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
 import 'package:first_temp/features/firebase_home_data/presentation/view/firebase_home_view.dart';
 import 'package:first_temp/features/home/data/models/debt_model/debt_model.dart';
-
 import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:first_temp/features/home/data/models/installment_model/installment_model.dart';
 import 'package:first_temp/features/home/data/models/payment_model/paymentlist_model.dart';
 import 'package:first_temp/features/home/data/models/product_model/product_model.dart';
-import 'package:first_temp/features/home/presentation/view/home.dart';
 import 'package:first_temp/firebase_options.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +20,6 @@ import 'package:first_temp/features/settings/presentation/manger/locale/locale_m
 import 'package:first_temp/features/settings/presentation/manger/theme/theme_bloc.dart';
 import 'package:first_temp/generated/l10n.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'core/app/app_observer.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

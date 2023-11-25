@@ -1,6 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class Task extends Equatable {
   final String title;
   bool? isDone;
@@ -44,6 +44,5 @@ class Task extends Equatable {
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [title, isDeleted, isDone];
 }
