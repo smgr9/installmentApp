@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class Task {
+import 'package:equatable/equatable.dart';
+
+class Task extends Equatable {
   final String title;
   bool? isDone;
   bool? isDeleted;
@@ -40,4 +42,8 @@ class Task {
       isDeleted: map['isDeleted'] != null ? map['isDeleted'] as bool : null,
     );
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [title, isDeleted, isDone];
 }
