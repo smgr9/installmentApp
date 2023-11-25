@@ -1,6 +1,6 @@
 import 'package:first_temp/features/debtor_quere/presentation/widget/list_of_debt.dart';
-import 'package:first_temp/features/home/data/models/debt_model.dart';
-import 'package:first_temp/features/home/data/models/dobter_model.dart';
+import 'package:first_temp/features/home/data/models/debt_model/debt_model.dart';
+import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:flutter/material.dart';
 
 class BuildDebtListView extends StatelessWidget {

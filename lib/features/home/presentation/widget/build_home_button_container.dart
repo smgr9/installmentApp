@@ -1,5 +1,5 @@
 import 'package:first_temp/core/app/app_style.dart';
-import 'package:first_temp/features/home/data/models/home_buttons_model.dart';
+import 'package:first_temp/features/home/data/models/home_buttons/home_buttons_model.dart';
 import 'package:flutter/material.dart';
 
 class BuildHomeButtonContainer extends StatelessWidget {

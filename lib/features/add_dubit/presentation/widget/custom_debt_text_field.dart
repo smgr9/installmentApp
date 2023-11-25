@@ -2,7 +2,7 @@ import 'package:first_temp/constent.dart';
 import 'package:first_temp/features/add_customer/data/models/add_debtor_model.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
 import 'package:first_temp/features/add_customer/presentation/widget/custom_form_text.dart';
-import 'package:first_temp/features/home/data/models/dobter_model.dart';
+import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:first_temp/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';

@@ -1,6 +1,6 @@
 import 'package:first_temp/constent.dart';
 import 'package:first_temp/features/add_customer/presentation/widget/custom_material_button.dart';
-import 'package:first_temp/features/home/data/models/dobter_model.dart';
+import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'custom_debt_text_field.dart';

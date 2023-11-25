@@ -1,6 +1,6 @@
 import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
-import 'package:first_temp/features/home/data/models/dobter_model.dart';
+import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 
 import 'package:flutter/material.dart';
 
@@ -30,6 +30,7 @@ class InstallerDataView extends StatelessWidget {
                             WriteDebtorCubit.get(context)
                                 .delDebtor(installment.id);
                             ReadDebtorCubit.get(context).getDebtor();
+                            Navigator.pop(context);
                             Navigator.pop(context);
                           },
                           child: const Text("Delete Dobter")),

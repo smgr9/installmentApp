@@ -1,24 +1,23 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:first_temp/constent.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
-import 'package:first_temp/features/home/data/models/debt_type_adabtoe.dart';
-import 'package:first_temp/features/home/data/models/dobter_type_adabter.dart';
-import 'package:first_temp/features/home/data/models/paymantlist_type_adapter.dart';
-import 'package:first_temp/features/home/data/models/product_type_adapter.dart';
+import 'package:first_temp/features/firebase_home_data/presentation/view/firebase_home_view.dart';
+import 'package:first_temp/features/home/data/models/debt_model/debt_model.dart';
+
+import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
+import 'package:first_temp/features/home/data/models/installment_model/installment_model.dart';
+import 'package:first_temp/features/home/data/models/payment_model/paymentlist_model.dart';
+import 'package:first_temp/features/home/data/models/product_model/product_model.dart';
 import 'package:first_temp/features/home/presentation/view/home.dart';
-
-import 'package:first_temp/test/presentation/manger/read/read_cubit.dart';
-import 'package:first_temp/test/presentation/manger/write/write_cubit.dart';
-
+import 'package:first_temp/firebase_options.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:first_temp/core/app/app_locale.dart';
 import 'package:first_temp/core/app/app_routes.dart';
 import 'package:first_temp/core/app/app_scroll_behavior.dart';
-
 import 'package:first_temp/features/settings/presentation/manger/locale/locale_manger_cubit.dart';
 import 'package:first_temp/features/settings/presentation/manger/theme/theme_bloc.dart';
 import 'package:first_temp/generated/l10n.dart';
@@ -29,23 +28,25 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await Hive.initFlutter();
 
-  // Hive.openBox(HiveConstants.wordBox);
-  // Hive.registerAdapter(WordTypeAdapter());
-
+  Hive.registerAdapter<DebtModel>(DebtModelAdapter());
+  Hive.registerAdapter<DobterModel>(DobterModelAdapter());
+  Hive.registerAdapter<InstallmentModel>(InstallmentModelAdapter());
+  Hive.registerAdapter<Paymentlist>(PaymentlistAdapter());
+  Hive.registerAdapter<ProductModel>(ProductModelAdapter());
   await Hive.openBox(HiveConstants.installment);
 
-  Hive.registerAdapter(InstallmentTypeAdapter());
-  Hive.registerAdapter(DebtTypeAdapter());
-  Hive.registerAdapter(ProductTypeAdapter());
-  Hive.registerAdapter(PaymantlistTypeAdaper());
   Bloc.observer = SimpleBlocObserver();
 
   runApp(
     // const MainApp(),
     DevicePreview(
-      enabled: !kReleaseMode,
+      enabled: kReleaseMode,
+      // enabled: !kReleaseMode,
       builder: (context) => const MainApp(), // Wrap your app
     ),
   );
@@ -63,12 +64,6 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider<ThemeBloc>(
           create: (context) => ThemeBloc()..add(GetCurrentThemeEvent()),
-        ),
-        BlocProvider(
-          create: (context1) => WriteCubit(),
-        ),
-        BlocProvider(
-          create: (context1) => ReadCubit()..getWords(),
         ),
         BlocProvider(
           create: (context1) => WriteDebtorCubit(),
@@ -93,7 +88,7 @@ class MainApp extends StatelessWidget {
                 builder: DevicePreview.appBuilder,
                 //routes
                 routes: routes,
-                initialRoute: Home.id,
+                initialRoute: FirebaseHomeView.id,
                 //theme
                 theme: theme.themeData?.copyWith(
                   textTheme: GoogleFonts.poppinsTextTheme(

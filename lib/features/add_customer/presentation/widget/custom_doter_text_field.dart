@@ -32,7 +32,7 @@ class CustomDoterTextField extends StatelessWidget {
               validator: (value) {
                 return AppValidation.validateInput(
                   value: value!,
-                  min: 8,
+                  min: 4,
                   max: 40,
                   type: AppValidationType.username,
                   context: context,
@@ -73,7 +73,7 @@ class CustomDoterTextField extends StatelessWidget {
               validator: (value) {
                 return AppValidation.validateInput(
                   value: value!,
-                  min: 15,
+                  min: 4,
                   max: 100,
                   type: AppValidationType.username,
                   context: context,

@@ -35,6 +35,12 @@ List<Map<String, dynamic>> drawerItems(BuildContext context) {
       "id": SettingsView.id,
     },
     {
+      "text": S.of(context).areej,
+      "icon": Icons.logout,
+      "function": () => Navigator.of(context).pushReplacementNamed(Home.id),
+      "id": Home.id,
+    },
+    {
       "text": S.of(context).logout,
       "icon": Icons.logout,
       "function": () => Navigator.of(context).pushReplacementNamed(Home.id),

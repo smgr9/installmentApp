@@ -1,6 +1,6 @@
 import 'package:first_temp/features/debtor_quere/presentation/view/screens/installer_data_view.dart';
 import 'package:first_temp/features/debtor_quere/presentation/widget/titles_text.dart';
-import 'package:first_temp/features/home/data/models/dobter_model.dart';
+import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:flutter/material.dart';
 
 class InstallerCard extends StatelessWidget {

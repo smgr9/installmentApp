@@ -1,5 +1,5 @@
 import 'package:first_temp/features/debtor_quere/presentation/widget/build_debtor_info.dart';
-import 'package:first_temp/features/home/data/models/dobter_model.dart';
+import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:flutter/material.dart';
 
 class GetDebtorInfo extends StatelessWidget {

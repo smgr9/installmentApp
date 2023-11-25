@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_date": MessageLookupByLibrary.simpleMessage("Date added"),
         "add_debtor": MessageLookupByLibrary.simpleMessage("Add debtor"),
         "address": MessageLookupByLibrary.simpleMessage("address"),
+        "areej": MessageLookupByLibrary.simpleMessage("areej"),
         "cant_be_Empty":
             MessageLookupByLibrary.simpleMessage("can\'t be Empty"),
         "cant_be_larger_than":

@@ -1,8 +1,7 @@
 import 'package:first_temp/constent.dart';
-import 'package:first_temp/features/home/data/models/debt_model.dart';
+import 'package:first_temp/features/home/data/models/debt_model/debt_model.dart';
 
-import 'package:first_temp/features/home/data/models/dobter_model.dart';
-import 'package:first_temp/features/home/data/models/product_model.dart';
+import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -131,7 +130,7 @@ class WriteDebtorCubit extends Cubit<WriteDebtorState> {
           date: DateTime.now().toString(),
           product: [],
           prepaidExpenses: prepaidExpenses,
-          paymentList: [],
+          installment: [],
           totalamount: totalamount,
         ),
       );

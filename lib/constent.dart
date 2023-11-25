@@ -21,6 +21,6 @@ const double gap20 = 20;
 abstract class HiveConstants {
   static const String wordBox = "wordBox";
   static const String wordList = "wordList";
-  static const String installment = "installmentBox4";
+  static const String installment = "installmentBox7";
   static const String installmentList = "installmentList";
 }

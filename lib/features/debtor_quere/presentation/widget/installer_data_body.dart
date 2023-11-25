@@ -1,6 +1,4 @@
-import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
-import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
-import 'package:first_temp/features/home/data/models/dobter_model.dart';
+import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:flutter/material.dart';
 import 'debt_data_viewer.dart';
 import 'dopter_informaion.dart';

@@ -28,12 +28,15 @@ dependencies:
   shared_preferences: ^2.2.2
   sqflite: ^2.3.0
   two_dimensional_scrollables: ^0.0.4
+  firebase_core: ^2.23.0
 
 dev_dependencies:
-  flutter_launcher_icons: "^0.13.1"
+  build_runner: ^2.4.6
+  flutter_launcher_icons: ^0.13.1
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+  hive_generator: ^2.0.1
 
 flutter_launcher_icons:
   android: "launcher_icon"

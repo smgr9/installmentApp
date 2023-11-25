@@ -1,4 +1,4 @@
-import 'package:first_temp/features/home/data/models/home_buttons_model.dart';
+import 'package:first_temp/features/home/data/models/home_buttons/home_buttons_model.dart';
 import 'package:flutter/material.dart';
 import 'build_home_button_container.dart';
 

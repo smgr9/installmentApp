@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_date": MessageLookupByLibrary.simpleMessage("تاريخ الإضافة"),
         "add_debtor": MessageLookupByLibrary.simpleMessage("إضافة مدين"),
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
+        "areej": MessageLookupByLibrary.simpleMessage("أريج"),
         "cant_be_Empty":
             MessageLookupByLibrary.simpleMessage("لا يجب ان يكون الحقل فارغاً"),
         "cant_be_larger_than":
