@@ -1,14 +1,16 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:first_temp/constent.dart';
+import 'package:first_temp/features/Splash/presentation/views/splash_view.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
-import 'package:first_temp/features/firebase_home_data/presentation/view/firebase_home_view.dart';
+
 import 'package:first_temp/features/home/data/models/debt_model/debt_model.dart';
 import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:first_temp/features/home/data/models/installment_model/installment_model.dart';
 import 'package:first_temp/features/home/data/models/payment_model/paymentlist_model.dart';
 import 'package:first_temp/features/home/data/models/product_model/product_model.dart';
+import 'package:first_temp/features/home/presentation/view/home.dart';
 import 'package:first_temp/firebase_options.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +87,8 @@ class MainApp extends StatelessWidget {
                 builder: DevicePreview.appBuilder,
                 //routes
                 routes: routes,
-                initialRoute: FirebaseHomeView.id,
+                // initialRoute: Home.id,
+                initialRoute: SplashView.id,
                 //theme
                 theme: theme.themeData?.copyWith(
                   textTheme: GoogleFonts.poppinsTextTheme(

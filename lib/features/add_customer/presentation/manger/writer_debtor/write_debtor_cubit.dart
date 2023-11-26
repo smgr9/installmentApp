@@ -5,7 +5,7 @@ import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.d
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 part 'write_debtor_state.dart';
 
 class WriteDebtorCubit extends Cubit<WriteDebtorState> {
@@ -24,22 +24,6 @@ class WriteDebtorCubit extends Cubit<WriteDebtorState> {
   /// Debt DATA
   double totalamount = 0;
   double prepaidExpenses = 0;
-
-  // DebtModel debt = DebtModel(
-  //   id: 1,
-  //   data: "dataAddion",
-  //   product: [
-  //     ProductModel(
-  //       indexatDatabase: 1,
-  //       productName: "productName",
-  //       price: 500,
-  //       quantity: 3,
-  //     ),
-  //   ],
-  //   prepaidExpenses: 500,
-  //   paymentList: [],
-  //   totalamount: 2,
-  // );
 
 //updata bloc data
 //=======================================================
@@ -71,6 +55,16 @@ class WriteDebtorCubit extends Cubit<WriteDebtorState> {
   }
 
 //========================================================
+
+  void addToFirebase() {
+    FirebaseFirestore.instance.collection('dobtoer').add({
+      'name': name,
+      'phone': phone,
+      'address': address,
+      'nationalId': nationalId,
+      'date': DateTime.now().toString(),
+    });
+  }
 
 //functions
 // =======================================================

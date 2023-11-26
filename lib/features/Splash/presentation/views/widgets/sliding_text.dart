@@ -16,7 +16,7 @@ class SlidingText extends StatelessWidget {
           return SlideTransition(
             position: slidingAnimation,
             child: const Text(
-              'Enjoy In Muhmoud Land',
+              'Save Installment',
               textAlign: TextAlign.center,
             ),
           );

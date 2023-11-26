@@ -25,7 +25,7 @@ class FirebaseHomeView extends StatelessWidget {
         onPressed: () {},
         child: const Icon(Icons.add),
       ),
-      body: FirebaseHomeBody(),
+      body: const FirebaseHomeBody(),
     );
   }
 }

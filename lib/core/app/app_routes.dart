@@ -23,6 +23,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   AddDebtorView.id: (context) => const AddDebtorView(),
   DebtorQuereView.id: (context) => const DebtorQuereView(),
   FirebaseHomeView.id: (context) => const FirebaseHomeView(),
+  SplashView.id: (context) => const SplashView(),
   // AddDebtorView.id: (context) => const AddDebtorView(),
   // AddDebtview.id: (context) => const AddDebtview(),
   // TestApp.id: (context) => const TestApp(),
