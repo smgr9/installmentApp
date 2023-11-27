@@ -60,7 +60,7 @@ class WriteDebtorCubit extends Cubit<WriteDebtorState> {
     var sizeID = await FirebaseFirestore.instance.collection('dobtoer').get();
 
     await FirebaseFirestore.instance.collection('dobtoer').add({
-      'id': sizeID.size + 1 ?? 0,
+      'id': sizeID.size == 0 ? 0 : sizeID.size + 1,
       'name': name.toString(),
       'phone': phone.toString(),
       'address': address.toString(),

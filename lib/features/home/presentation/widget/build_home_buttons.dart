@@ -15,13 +15,16 @@ class BuildHomeButtons extends StatelessWidget {
       onTap: () {
         Navigator.of(context).pushNamed(buttons.page);
       },
-      child: Container(
-        // width: 100,
-        decoration: BoxDecoration(
-          color: Colors.amber,
-          borderRadius: BorderRadius.circular(55),
+      child: Hero(
+        tag: "gazer2",
+        child: Container(
+          // width: 100,
+          decoration: BoxDecoration(
+            color: Colors.amber,
+            borderRadius: BorderRadius.circular(55),
+          ),
+          child: BuildHomeButtonContainer(buttons: buttons),
         ),
-        child: BuildHomeButtonContainer(buttons: buttons),
       ),
     );
   }

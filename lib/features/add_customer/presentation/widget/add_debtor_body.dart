@@ -41,7 +41,7 @@ class _AddDebtorBodyState extends State<AddDebtorBody> {
                   // await WriteDebtorCubit.get(context).addDebtor();
 
                   WriteDebtorCubit.get(context).addDobterToFirebase();
-                  ReadDebtorCubit.get(context).getDebtor();
+                  // ReadDebtorCubit.get(context).getDebtor();
                   Navigator.pop(context);
                 }
               },

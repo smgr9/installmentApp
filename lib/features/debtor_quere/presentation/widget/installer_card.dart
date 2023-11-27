@@ -29,7 +29,8 @@ class InstallerCard extends StatelessWidget {
       ),
       leading: const Icon(Icons.person),
       trailing: IconButton(
-        icon: const Icon(Icons.arrow_forward_ios_outlined),
+        icon: const Hero(
+            tag: "gazer1", child: Icon(Icons.arrow_forward_ios_outlined)),
         onPressed: () async {
           Navigator.push(
             context,

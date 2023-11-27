@@ -3,23 +3,42 @@ import 'package:first_temp/features/debtor_quere/presentation/widget/build_debto
 import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:flutter/material.dart';
 
-class GetDebtorInfo extends StatelessWidget {
+class GetDebtorInfo extends StatefulWidget {
   final List<DobterModel> debtor;
-  const GetDebtorInfo({Key? key, required this.debtor}) : super(key: key);
+  final BuildContext parentContext; // إضافة معامل لتمرير context
 
+  const GetDebtorInfo(
+      {Key? key, required this.debtor, required this.parentContext})
+      : super(key: key);
+
+  @override
+  _GetDebtorInfoState createState() => _GetDebtorInfoState();
+}
+
+class _GetDebtorInfoState extends State<GetDebtorInfo> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () => ReadDebtorCubit.get(context).getDebtor(),
-      child: ListView.builder(
-        itemCount: debtor.length,
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return BuildDebtorInfo(
-            debtor: debtor[index],
-          );
-        },
+      triggerMode: RefreshIndicatorTriggerMode.anywhere,
+      onRefresh: () => _refresh(widget.parentContext), // تمرير context هنا
+      child: CustomScrollView(
+        slivers: [
+          SliverList.builder(
+            itemCount: widget.debtor.length,
+            itemBuilder: (context, index) {
+              return BuildDebtorInfo(
+                debtor: widget.debtor[index],
+              );
+            },
+          )
+        ],
       ),
     );
+  }
+
+  Future<void> _refresh(BuildContext context) async {
+    ReadDebtorCubit.get(context).getDebtor();
+    // يمكنك استخدام context هنا للتفاعل مع الـ ReadDebtorCubit أو أي شيء آخر يتطلب context
+    print("Refreshed");
   }
 }

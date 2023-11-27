@@ -18,8 +18,10 @@ class ReadDebtorCubit extends Cubit<ReadDebtorState> {
       //     List.from(box.get(HiveConstants.installmentList, defaultValue: []))
       //         .cast<DobterModel>();
 
-      QuerySnapshot querySnapshot =
-          await FirebaseFirestore.instance.collection('dobtoer').get();
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('dobtoer')
+          .orderBy("id")
+          .get();
 
       List<DobterModel> dobters = querySnapshot.docs.map((doc) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;

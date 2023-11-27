@@ -15,7 +15,8 @@ class DopterInformaion extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const DopterTitle(title: "البيانات الاساسية"),
+        const Hero(
+            tag: "gazer1", child: DopterTitle(title: "البيانات الاساسية")),
         InstallerSamiry(installment: installment),
       ],
     );
