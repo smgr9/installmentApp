@@ -9,7 +9,7 @@ class DobterModel {
   @HiveField(0)
   final int id;
   @HiveField(1)
-  final String data;
+  final String date;
   @HiveField(2)
   final String name;
   @HiveField(3)
@@ -20,21 +20,23 @@ class DobterModel {
   final String address;
   @HiveField(6)
   final List<DebtModel> debts;
+  final String? fbID;
 
   DobterModel({
-    required this.id,
-    required this.data,
+    required this.date,
     required this.name,
     required this.nationalId,
     required this.phone,
     required this.address,
+    this.fbID,
     this.debts = const [],
+    this.id = 0,
   });
 
   DobterModel decrementIndexAtDatabase() {
     return DobterModel(
       id: id - 1,
-      data: data,
+      date: date,
       name: name,
       nationalId: nationalId,
       phone: phone,
@@ -60,7 +62,7 @@ class DobterModel {
   DobterModel _getDebtor(List<DebtModel> newdebt) {
     return DobterModel(
       id: id,
-      data: data,
+      date: date,
       name: name,
       nationalId: nationalId,
       phone: phone,
@@ -73,7 +75,7 @@ class DobterModel {
   String toString() {
     return '''\nInstallmentModel(
       \nid: $id,
-      \n data: $data,
+      \n data: $date,
       \n name: $name,
     \n nationalId: $nationalId,
     \n phone: $phone,

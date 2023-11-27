@@ -23,13 +23,13 @@ class InstallerSamiry extends StatelessWidget {
           _customTableRow(columnName: "الاسم", value: installment.name),
           _customTableRow(
               columnName: "تاريخ الإضافة",
-              value: installment.data.substring(0, 10)),
+              value: installment.date.substring(0, 10)),
           _customTableRow(
               columnName: "الرقم القومي", value: installment.nationalId),
           _customTableRow(columnName: "رقم الهاتف", value: installment.phone),
           _customTableRow(
               columnName: "العنوان",
-              value: installment.address.substring(0, 10)),
+              value: "${installment.address.substring(0, 10)}..."),
         ],
       ),
     );

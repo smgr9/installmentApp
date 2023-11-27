@@ -56,14 +56,41 @@ class WriteDebtorCubit extends Cubit<WriteDebtorState> {
 
 //========================================================
 
-  void addToFirebase() {
-    FirebaseFirestore.instance.collection('dobtoer').add({
-      'name': name,
-      'phone': phone,
-      'address': address,
-      'nationalId': nationalId,
+  Future addDobterToFirebase() async {
+    var sizeID = await FirebaseFirestore.instance.collection('dobtoer').get();
+
+    await FirebaseFirestore.instance.collection('dobtoer').add({
+      'id': sizeID.size + 1 ?? 0,
+      'name': name.toString(),
+      'phone': phone.toString(),
+      'address': address.toString(),
+      'nationalId': nationalId.toString(),
       'date': DateTime.now().toString(),
     });
+  }
+
+  void addDebtToFirebase() async {
+    tryAndCatchBloc(() async {
+      CollectionReference dobterCollection =
+          FirebaseFirestore.instance.collection('dobtoer');
+
+      await dobterCollection
+          .doc("o83BKxN5vbeq6GPVaDUV")
+          .collection('debt')
+          .add({
+        'totalamount': totalamount,
+        'prepaidExpenses': prepaidExpenses,
+      });
+    }, "erorr");
+  }
+
+  void deletDebtToFirebase(String? installmentFbID) async {
+    tryAndCatchBloc(() async {
+      await FirebaseFirestore.instance
+          .collection("dobtoer")
+          .doc(installmentFbID)
+          .delete();
+    }, "erorr");
   }
 
 //functions
@@ -79,7 +106,7 @@ class WriteDebtorCubit extends Cubit<WriteDebtorState> {
 
       installment.add(DobterModel(
         id: installment.length,
-        data: DateTime.now().toString(),
+        date: DateTime.now().toString(),
         name: name,
         nationalId: nationalId,
         phone: phone,

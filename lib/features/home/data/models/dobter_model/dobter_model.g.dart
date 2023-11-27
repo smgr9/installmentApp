@@ -18,7 +18,7 @@ class DobterModelAdapter extends TypeAdapter<DobterModel> {
     };
     return DobterModel(
       id: fields[0] as int,
-      data: fields[1] as String,
+      date: fields[1] as String,
       name: fields[2] as String,
       nationalId: fields[3] as String,
       phone: fields[4] as String,
@@ -34,7 +34,7 @@ class DobterModelAdapter extends TypeAdapter<DobterModel> {
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.data)
+      ..write(obj.date)
       ..writeByte(2)
       ..write(obj.name)
       ..writeByte(3)

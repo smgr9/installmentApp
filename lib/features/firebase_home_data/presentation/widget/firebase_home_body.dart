@@ -41,7 +41,7 @@ class _FirebaseHomeBodyState extends State<FirebaseHomeBody> {
                   // ignore: use_build_context_synchronously
                   await ReadDebtorCubit.get(context).getDebtor();
                   // ignore: use_build_context_synchronously
-                  WriteDebtorCubit.get(context).addToFirebase();
+                  WriteDebtorCubit.get(context).addDobterToFirebase();
                 }
               },
             ),

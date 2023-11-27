@@ -32,7 +32,8 @@ class _AddDebtBodyState extends State<AddDebtBody> {
             // list: addDebt(context),
             onPressed: () {
               if (formKey.currentState!.validate()) {
-                WriteDebtorCubit.get(context).addDebt(widget.installment.id);
+                // WriteDebtorCubit.get(context).addDebt(widget.installment.id);
+                WriteDebtorCubit.get(context).addDebtToFirebase();
                 ReadDebtorCubit.get(context).getDebtor();
                 Navigator.pop(context);
               }

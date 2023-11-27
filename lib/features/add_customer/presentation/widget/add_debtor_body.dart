@@ -36,15 +36,13 @@ class _AddDebtorBodyState extends State<AddDebtorBody> {
             child: CustomForm(
               formKey: formKey,
               text: S.of(context).save_data,
-              onPressed: () async {
+              onPressed: () {
                 if (formKey.currentState!.validate()) {
                   // await WriteDebtorCubit.get(context).addDebtor();
-                  // ignore: use_build_context_synchronously
-                  // await ReadDebtorCubit.get(context).getDebtor();
-                  // ignore: use_build_context_synchronously
+
+                  WriteDebtorCubit.get(context).addDobterToFirebase();
+                  ReadDebtorCubit.get(context).getDebtor();
                   Navigator.pop(context);
-                  // ignore: use_build_context_synchronously
-                  WriteDebtorCubit.get(context).addToFirebase();
                 }
               },
             ),
