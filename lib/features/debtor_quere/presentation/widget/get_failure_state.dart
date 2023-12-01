@@ -13,7 +13,8 @@ class GetFailureState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: refreshDataFormFB(perContext),
+      triggerMode: RefreshIndicatorTriggerMode.anywhere,
+      onRefresh: () => refreshDataFormFB(perContext),
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Center(
