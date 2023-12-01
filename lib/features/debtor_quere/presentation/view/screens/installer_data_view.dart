@@ -1,16 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:first_temp/core/app/type_def.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
-
-import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
-
 import 'package:flutter/material.dart';
-
 import '../../widget/installer_data_body.dart';
+import 'custom_del_dialog.dart';
 
 class InstallerDataView extends StatelessWidget {
-  final DobterModel installment;
+  final InstallmentRec installment;
   const InstallerDataView({Key? key, required this.installment})
       : super(key: key);
 
@@ -19,39 +15,38 @@ class InstallerDataView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: [
+          CustomDelDialog(installment: installment),
           IconButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (con) {
-                  return AlertDialog(
-                    title: const Text("Alert"),
-                    content: const Text("Do you want to Delete Dobter?"),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          // حفظ BuildContext المحلي
-
-                          WriteDebtorCubit.get(context)
-                              .deletDebtToFirebase(installment.fbID);
-                          Navigator.pop(con);
-                          Navigator.pop(con);
-                          ReadDebtorCubit.get(con).getDebtor();
-                        },
-                        child: const Text("Delete Dobter"),
-                      )
-                    ],
-                  );
-                },
-              );
-            },
-            icon: const Icon(Icons.delete),
-          ),
+              onPressed: () {
+                WriteDebtorCubit.get(context).updataFirebaseRow();
+                Future.delayed(
+                  const Duration(seconds: 5),
+                  () {
+                    ReadDebtorCubit.get(context).getDebtor();
+                  },
+                );
+              },
+              icon: const Icon(Icons.upgrade))
         ],
         title: Text(installment.name.substring(0, 5)),
       ),
-      body: InstallerDataBody(
-        installment: installment,
+      body: Stack(
+        children: [
+          InstallerDataBody(
+            preContext: context,
+            installment: installment,
+          ),
+          WriteDebtorCubit.get(context).isLoading
+              ? Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  color: Colors.white.withOpacity(0.5),
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                )
+              : const SizedBox(),
+        ],
       ),
     );
   }

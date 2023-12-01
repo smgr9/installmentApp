@@ -1,4 +1,4 @@
-import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
+import 'package:first_temp/core/app/app_functions.dart';
 import 'package:first_temp/test/presentation/styles/color_manger.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class _GetEmptyListState extends State<GetEmptyList> {
   Widget build(BuildContext context) {
     return Center(
       child: RefreshIndicator(
-        onRefresh: () => _onRefresh(widget.parentContext),
+        onRefresh: () => refreshDataFormFB(widget.parentContext),
         child: const CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
@@ -42,9 +42,4 @@ class _GetEmptyListState extends State<GetEmptyList> {
       ),
     );
   }
-}
-
-Future<void> _onRefresh(BuildContext context) async {
-  ReadDebtorCubit.get(context).getDebtor();
-  print("object");
 }

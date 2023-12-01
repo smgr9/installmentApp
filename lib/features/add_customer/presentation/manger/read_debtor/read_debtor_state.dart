@@ -7,9 +7,9 @@ final class ReadDebtorInitial extends ReadDebtorState {}
 final class ReadDebtorLoading extends ReadDebtorState {}
 
 final class ReadDebtorSuccess extends ReadDebtorState {
-  final List<DobterModel> installmentModel;
+  final List<InstallmentRec> installment;
 
-  ReadDebtorSuccess({required this.installmentModel});
+  ReadDebtorSuccess({required this.installment});
 }
 
 final class ReadDebtorFailure extends ReadDebtorState {

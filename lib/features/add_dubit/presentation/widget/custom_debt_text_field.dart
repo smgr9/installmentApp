@@ -1,17 +1,17 @@
 import 'package:first_temp/constent.dart';
+import 'package:first_temp/core/app/type_def.dart';
 import 'package:first_temp/features/add_customer/data/models/add_debtor_model.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
 import 'package:first_temp/features/add_customer/presentation/widget/custom_form_text.dart';
-import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:first_temp/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class CustomDebtTextField extends StatelessWidget {
-  final DobterModel installmentModel;
+  final InstallmentRec installment;
   const CustomDebtTextField({
     super.key,
-    required this.installmentModel,
+    required this.installment,
   });
 
   @override
@@ -19,7 +19,7 @@ class CustomDebtTextField extends StatelessWidget {
     TextEditingController textEditingController = TextEditingController();
 
     TextEditingController debtorNameController = TextEditingController();
-    debtorNameController.text = installmentModel.name;
+    debtorNameController.text = installment.name;
     return Column(
       children: [
         const Gap(gap20),

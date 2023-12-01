@@ -21,6 +21,7 @@ class DobterModel {
   @HiveField(6)
   final List<DebtModel> debts;
   final String? fbID;
+  final Map<String, dynamic>? test;
 
   DobterModel({
     required this.date,
@@ -31,6 +32,7 @@ class DobterModel {
     this.fbID,
     this.debts = const [],
     this.id = 0,
+    this.test = const {},
   });
 
   DobterModel decrementIndexAtDatabase() {
@@ -80,7 +82,9 @@ class DobterModel {
     \n nationalId: $nationalId,
     \n phone: $phone,
     \n address: $address,
-    \n debts: $debts)
+    \ntest: ${test?.keys}
+    \n debts: $debts,
+     )
     \n''';
   }
 }

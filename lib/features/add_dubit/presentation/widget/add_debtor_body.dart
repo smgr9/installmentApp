@@ -1,16 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+import 'package:first_temp/core/app/type_def.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
 import 'package:first_temp/features/add_dubit/presentation/widget/custom_debt_form.dart';
-import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:first_temp/generated/l10n.dart';
-import 'package:flutter/material.dart';
 
 class AddDebtBody extends StatefulWidget {
-  final DobterModel installment;
   const AddDebtBody({
-    super.key,
+    Key? key,
     required this.installment,
-  });
+  }) : super(key: key);
+
+  final InstallmentRec installment;
 
   @override
   State<AddDebtBody> createState() => _AddDebtBodyState();
@@ -27,15 +29,18 @@ class _AddDebtBodyState extends State<AddDebtBody> {
         child: Center(
           child: CustomDebtForm(
             formKey: formKey,
-            installmentModel: widget.installment,
+            installment: widget.installment,
             text: S.of(context).add,
             // list: addDebt(context),
             onPressed: () {
               if (formKey.currentState!.validate()) {
                 // WriteDebtorCubit.get(context).addDebt(widget.installment.id);
-                WriteDebtorCubit.get(context).addDebtToFirebase();
-                ReadDebtorCubit.get(context).getDebtor();
+                WriteDebtorCubit.get(context)
+                    .addDebtToFirebase(widget.installment.fbID);
                 Navigator.pop(context);
+                Future.delayed(const Duration(seconds: 5), () {
+                  ReadDebtorCubit.get(context).getDebtor();
+                });
               }
             },
           ),

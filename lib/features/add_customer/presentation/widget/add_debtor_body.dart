@@ -1,14 +1,15 @@
 import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
-
 import 'package:flutter/material.dart';
 import 'package:first_temp/features/add_customer/presentation/widget/custom_form.dart';
 import 'package:first_temp/generated/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddDebtorBody extends StatefulWidget {
+  final BuildContext parentContext;
   const AddDebtorBody({
     super.key,
+    required this.parentContext,
   });
 
   @override
@@ -22,10 +23,15 @@ class _AddDebtorBodyState extends State<AddDebtorBody> {
     return BlocListener<WriteDebtorCubit, WriteDebtorState>(
       listener: (context, state) {
         if (state is WriteDebtorSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Center(child: Text("تم إضافة العميل بنجاح ❤")),
-            ),
+          Future.delayed(
+            const Duration(seconds: 2),
+            () {
+              ScaffoldMessenger.of(widget.parentContext).showSnackBar(
+                const SnackBar(
+                  content: Center(child: Text("تم إضافة العميل بنجاح ❤")),
+                ),
+              );
+            },
           );
         }
       },
@@ -36,13 +42,15 @@ class _AddDebtorBodyState extends State<AddDebtorBody> {
             child: CustomForm(
               formKey: formKey,
               text: S.of(context).save_data,
-              onPressed: () {
+              onPressed: () async {
                 if (formKey.currentState!.validate()) {
-                  // await WriteDebtorCubit.get(context).addDebtor();
-
                   WriteDebtorCubit.get(context).addDobterToFirebase();
-                  // ReadDebtorCubit.get(context).getDebtor();
-                  Navigator.pop(context);
+                  await Future.delayed(const Duration(seconds: 2), () {
+                    ReadDebtorCubit.get(context).getDebtor();
+                    Navigator.pop(context);
+                  });
+                  // Navigator.of(context)
+                  //     .pushReplacementNamed(DebtorQuereView.id);
                 }
               },
             ),

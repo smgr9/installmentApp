@@ -13,7 +13,9 @@ class AddDebtorView extends StatelessWidget {
         centerTitle: true,
         title: Text(S.of(context).add_debtor),
       ),
-      body: const AddDebtorBody(),
+      body: AddDebtorBody(
+        parentContext: context,
+      ),
     );
   }
 }

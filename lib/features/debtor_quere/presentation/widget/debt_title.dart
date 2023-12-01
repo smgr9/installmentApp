@@ -1,6 +1,7 @@
+import 'package:first_temp/core/app/app_color.dart';
+import 'package:first_temp/core/app/type_def.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
 import 'package:first_temp/features/add_dubit/presentation/view/add_debtor.dart';
-import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:first_temp/test/presentation/styles/color_manger.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class DebtTitle extends StatelessWidget {
     required this.installment,
   });
 
-  final DobterModel installment;
+  final InstallmentRec installment;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,14 @@ class DebtTitle extends StatelessWidget {
             style: TextStyle(fontSize: 30),
           ),
         ),
-        leading: const Icon(Icons.safety_check),
+        leading: IconButton(
+            onPressed: () {
+              ReadDebtorCubit.get(context).getDebtor();
+            },
+            icon: Icon(
+              Icons.safety_check,
+              color: antiPrimaryColor(context),
+            )),
         trailing: IconButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(

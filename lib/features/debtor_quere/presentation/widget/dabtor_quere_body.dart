@@ -17,18 +17,21 @@ class DebtorQuereBody extends StatelessWidget {
       builder: (context, state) {
         if (state is ReadDebtorSuccess) {
           // ignore: avoid_print
-          print(state.installmentModel);
-          if (state.installmentModel.isEmpty) {
+          print(state.installment);
+          if (state.installment.isEmpty) {
             return GetEmptyList(
               parentContext: context,
             );
           }
           return GetDebtorInfo(
-            debtor: state.installmentModel,
+            installment: state.installment,
             parentContext: context,
           );
         } else if (state is ReadDebtorFailure) {
-          return GetFailureState(message: state.message);
+          return GetFailureState(
+            message: state.message,
+            perContext: context,
+          );
         } else {
           return const GetLoadingState();
         }

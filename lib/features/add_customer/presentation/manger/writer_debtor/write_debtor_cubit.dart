@@ -1,6 +1,7 @@
+import 'dart:developer';
+
 import 'package:first_temp/constent.dart';
 import 'package:first_temp/features/home/data/models/debt_model/debt_model.dart';
-
 import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,6 +25,7 @@ class WriteDebtorCubit extends Cubit<WriteDebtorState> {
   /// Debt DATA
   double totalamount = 0;
   double prepaidExpenses = 0;
+  bool isLoading = false;
 
 //updata bloc data
 //=======================================================
@@ -57,39 +59,94 @@ class WriteDebtorCubit extends Cubit<WriteDebtorState> {
 //========================================================
 
   Future addDobterToFirebase() async {
-    var sizeID = await FirebaseFirestore.instance.collection('dobtoer').get();
-
-    await FirebaseFirestore.instance.collection('dobtoer').add({
-      'id': sizeID.size == 0 ? 0 : sizeID.size + 1,
-      'name': name.toString(),
-      'phone': phone.toString(),
-      'address': address.toString(),
-      'nationalId': nationalId.toString(),
-      'date': DateTime.now().toString(),
-    });
+    tryAndCatchBloc(() async {
+      var sizeID = await FirebaseFirestore.instance.collection('dobtoer').get();
+      await FirebaseFirestore.instance.collection('dobtoer').add({
+        'id': sizeID.size == 0 ? 0 : sizeID.size - 1,
+        'name': name.toString(),
+        'phone': phone.toString(),
+        'address': address.toString(),
+        'nationalId': nationalId.toString(),
+        'date': DateTime.now().toString(),
+      });
+    }, "erorr in add");
   }
 
-  void addDebtToFirebase() async {
+  Future updataFirebaseRow() async {
+    tryAndCatchBloc(() async {
+      await FirebaseFirestore.instance
+          .collection('dobtoer')
+          .doc("scPXFnMplGjyzJEYScC6")
+          .update(
+            {
+              'testMap': {"name": 'ali'}
+            },
+          )
+          .then((value) => log("User Updated"))
+          .catchError((error) => log("Failed to add user: $error"));
+    }, "erorr in add");
+  }
+
+  void addDebtToFirebase(String fbID) async {
     tryAndCatchBloc(() async {
       CollectionReference dobterCollection =
           FirebaseFirestore.instance.collection('dobtoer');
 
-      await dobterCollection
-          .doc("o83BKxN5vbeq6GPVaDUV")
-          .collection('debt')
-          .add({
+      var sizeID = await FirebaseFirestore.instance
+          .collection('dobtoer')
+          .doc(fbID)
+          .collection("debt")
+          .get();
+
+      await dobterCollection.doc(fbID).collection('debt').add({
+        'id': sizeID.size == 0 ? 0 : sizeID.size,
+        'date': DateTime.now().toString(),
         'totalamount': totalamount,
         'prepaidExpenses': prepaidExpenses,
       });
     }, "erorr");
   }
 
-  void deletDebtToFirebase(String? installmentFbID) async {
+  void deletDobterFromFirebase(String? installmentFbID, int id) async {
     tryAndCatchBloc(() async {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('dobtoer')
+          .orderBy("id")
+          .get();
+
+      List<DobterModel> dobters = querySnapshot.docs.map((doc) {
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+        // استخدام بيانات Firebase لإنشاء نموذج DobterModel
+        return DobterModel(
+          id: data['id'],
+          fbID: doc.id,
+          date: data['date'].toString(),
+          name: data['name'].toString(),
+          nationalId: data['nationalId'].toString(),
+          phone: data['phone'].toString(),
+          address: data['address'].toString(),
+          // قد تحتاج إلى تحويل البيانات الإضافية مثل الديون (debts) إلى نماذج مناسبة
+        );
+      }).toList();
+
+      // print(id);
+      // print(installmentFbID);
       await FirebaseFirestore.instance
           .collection("dobtoer")
           .doc(installmentFbID)
           .delete();
+      dobters.removeAt(id);
+      log("====================================");
+      // print(dobters[8].fbID);
+      // print("====================================");
+      for (int i = id; i < dobters.length; i++) {
+        log(dobters[i].fbID.toString());
+        log(i.toString());
+        await FirebaseFirestore.instance
+            .collection("dobtoer")
+            .doc(dobters[i].fbID)
+            .update({"id": dobters[i].id - 1});
+      }
     }, "erorr");
   }
 
@@ -180,8 +237,10 @@ class WriteDebtorCubit extends Cubit<WriteDebtorState> {
   void tryAndCatchBloc(VoidCallback methodToExcute, String messege) {
     emit(WriteDebtorLoading());
     try {
+      isLoading = true;
       methodToExcute.call();
       emit(WriteDebtorSuccess());
+      isLoading = false;
     } catch (e) {
       emit(WriteDebtorFailure(messeage: "$messege : $e"));
     }

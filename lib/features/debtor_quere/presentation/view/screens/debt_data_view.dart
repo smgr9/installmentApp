@@ -1,18 +1,18 @@
+import 'package:first_temp/core/app/type_def.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
 import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
 import 'package:first_temp/features/home/data/models/debt_model/debt_model.dart';
-import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
 import 'package:first_temp/test/presentation/styles/color_manger.dart';
 import 'package:flutter/material.dart';
 
 import '../../widget/custom_debt_list_tile.dart';
 
 class DebtDataView extends StatelessWidget {
-  final DobterModel installmentModel;
-  final DebtModel debt;
   const DebtDataView(
-      {Key? key, required this.debt, required this.installmentModel})
-      : super(key: key);
+      {super.key, required this.installment, required this.debt});
+
+  final InstallmentRec installment;
+  final DebtModel debt;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class DebtDataView extends StatelessWidget {
             onPressed: () {
               // WriteDebtorCubit.get(context)
               //     .delDebt(installmentModel.id, debt.id);
-              WriteDebtorCubit.get(context).addDebt(installmentModel.id);
+              WriteDebtorCubit.get(context).addDebt(installment.id);
               ReadDebtorCubit.get(context).getDebtor();
 
               Navigator.pop(context);
@@ -34,8 +34,7 @@ class DebtDataView extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.delete),
             onPressed: () {
-              WriteDebtorCubit.get(context)
-                  .delDebt(installmentModel.id, debt.id!);
+              WriteDebtorCubit.get(context).delDebt(installment.id, debt.id!);
               // WriteDebtorCubit.get(context).addDebt(installmentModel.id);
               ReadDebtorCubit.get(context).getDebtor();
 
@@ -69,7 +68,7 @@ class DebtViewbody extends StatelessWidget {
             color: ColorManger.white,
             child: CustomDebtListTile(
               text: debt.id.toString(),
-              date: debt.date!.substring(0, 10),
+              date: debt.date!.substring(0, 10), debtModel: debt,
               // icon: ,
               // iconButton: ,
             ),

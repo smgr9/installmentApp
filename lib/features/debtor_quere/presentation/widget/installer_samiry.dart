@@ -1,12 +1,11 @@
-import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
+import 'package:first_temp/core/app/type_def.dart';
 import 'package:first_temp/test/presentation/styles/color_manger.dart';
-
 import 'package:flutter/material.dart';
 
 class InstallerSamiry extends StatelessWidget {
-  final DobterModel installment;
-  const InstallerSamiry({Key? key, required this.installment})
-      : super(key: key);
+  const InstallerSamiry({super.key, required this.installment});
+
+  final InstallmentRec installment;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +26,8 @@ class InstallerSamiry extends StatelessWidget {
           _customTableRow(
               columnName: "الرقم القومي", value: installment.nationalId),
           _customTableRow(columnName: "رقم الهاتف", value: installment.phone),
+          _customTableRow(
+              columnName: "رقم الهاتف", value: installment.fbID.toString()),
           _customTableRow(
               columnName: "العنوان",
               value: "${installment.address.substring(0, 10)}..."),
