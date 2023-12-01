@@ -17,7 +17,7 @@ class InstallerDataBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: refreshDataFormFB(preContext),
+      onRefresh: () => refreshDataFormFB(preContext),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: CustomScrollView(
