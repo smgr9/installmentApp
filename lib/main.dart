@@ -1,41 +1,35 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:first_temp/constent.dart';
-import 'package:first_temp/features/Splash/presentation/views/splash_view.dart';
-import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
-import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
-import 'package:first_temp/features/home/data/models/debt_model/debt_model.dart';
-import 'package:first_temp/features/home/data/models/dobter_model/dobter_model.dart';
-import 'package:first_temp/features/home/data/models/installment_model/installment_model.dart';
-import 'package:first_temp/features/home/data/models/payment_model/paymentlist_model.dart';
-import 'package:first_temp/features/home/data/models/product_model/product_model.dart';
-import 'package:first_temp/firebase_options.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:first_temp/core/app/app_locale.dart';
 import 'package:first_temp/core/app/app_routes.dart';
 import 'package:first_temp/core/app/app_scroll_behavior.dart';
+import 'package:first_temp/features/Splash/presentation/views/splash_view.dart';
+import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
+import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
 import 'package:first_temp/features/settings/presentation/manger/locale/locale_manger_cubit.dart';
 import 'package:first_temp/features/settings/presentation/manger/theme/theme_bloc.dart';
+import 'package:first_temp/firebase_options.dart';
 import 'package:first_temp/generated/l10n.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'core/app/app_observer.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await Hive.initFlutter();
+  // await Hive.initFlutter();
 
-  Hive.registerAdapter<DebtModel>(DebtModelAdapter());
-  Hive.registerAdapter<DobterModel>(DobterModelAdapter());
-  Hive.registerAdapter<InstallmentModel>(InstallmentModelAdapter());
-  Hive.registerAdapter<Paymentlist>(PaymentlistAdapter());
-  Hive.registerAdapter<ProductModel>(ProductModelAdapter());
-  await Hive.openBox(HiveConstants.installment);
+  // Hive.registerAdapter<DebtModel>(DebtModelAdapter());
+  // Hive.registerAdapter<DobterModel>(DobterModelAdapter());
+  // Hive.registerAdapter<InstallmentModel>(InstallmentModelAdapter());
+  // Hive.registerAdapter<Paymentlist>(PaymentlistAdapter());
+  // Hive.registerAdapter<ProductModel>(ProductModelAdapter());
+  // await Hive.openBox(HiveConstants.installment);
 
   Bloc.observer = SimpleBlocObserver();
 
