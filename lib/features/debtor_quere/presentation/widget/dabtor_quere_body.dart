@@ -1,6 +1,7 @@
-import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
+import 'package:first_temp/features/add_debtor/presentation/manger/read_debtor/read_debtor_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'get_debtor.dart';
 import 'get_empty_list.dart';
 import 'get_failure_state.dart';

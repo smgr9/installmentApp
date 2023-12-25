@@ -1,5 +1,5 @@
 import 'package:first_temp/core/app/app_color.dart';
-import 'package:first_temp/features/add_customer/data/models/add_debtor_model.dart';
+import 'package:first_temp/features/add_debtor/data/models/add_debtor_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {

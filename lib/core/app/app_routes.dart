@@ -1,5 +1,5 @@
 import 'package:first_temp/features/Splash/presentation/views/splash_view.dart';
-import 'package:first_temp/features/add_customer/presentation/view/add_debtor_view.dart';
+import 'package:first_temp/features/add_debtor/presentation/view/add_debtor_view.dart';
 import 'package:first_temp/features/firebase_home_data/presentation/view/firebase_home_view.dart';
 
 import 'package:first_temp/features/onboarding/presentation/manger/cubit/onboarding_pageview_cubit.dart';

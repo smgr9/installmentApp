@@ -1,5 +1,5 @@
 import 'package:first_temp/core/app/type_def.dart';
-import 'package:first_temp/features/add_dubit/presentation/widget/add_debtor_body.dart';
+import 'package:first_temp/features/add_debt/presentation/widget/add_debtor_body.dart';
 import 'package:first_temp/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
