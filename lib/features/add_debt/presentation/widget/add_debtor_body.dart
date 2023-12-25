@@ -1,10 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
 import 'package:first_temp/core/app/type_def.dart';
-import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
-import 'package:first_temp/features/add_customer/presentation/manger/writer_debtor/write_debtor_cubit.dart';
-import 'package:first_temp/features/add_dubit/presentation/widget/custom_debt_form.dart';
+import 'package:first_temp/features/add_debt/presentation/widget/custom_debt_form.dart';
+import 'package:first_temp/features/add_debtor/presentation/manger/read_debtor/read_debtor_cubit.dart';
+import 'package:first_temp/features/add_debtor/presentation/manger/writer_debtor/write_debtor_cubit.dart';
 import 'package:first_temp/generated/l10n.dart';
+import 'package:flutter/material.dart';
 
 class AddDebtBody extends StatefulWidget {
   const AddDebtBody({
