@@ -1,7 +1,7 @@
 import 'package:first_temp/core/app/app_color.dart';
 import 'package:first_temp/core/app/type_def.dart';
-import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
-import 'package:first_temp/features/add_dubit/presentation/view/add_debtor.dart';
+import 'package:first_temp/features/add_debt/presentation/view/add_debt.dart';
+import 'package:first_temp/features/add_debtor/presentation/manger/read_debtor/read_debtor_cubit.dart';
 import 'package:first_temp/test/presentation/styles/color_manger.dart';
 import 'package:flutter/material.dart';
 

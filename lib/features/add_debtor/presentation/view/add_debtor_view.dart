@@ -1,4 +1,4 @@
-import 'package:first_temp/features/add_customer/presentation/widget/add_debtor_body.dart';
+import 'package:first_temp/features/add_debtor/presentation/widget/add_debtor_body.dart';
 import 'package:first_temp/generated/l10n.dart';
 import 'package:flutter/material.dart';
 

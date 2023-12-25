@@ -1,6 +1,6 @@
 import 'package:first_temp/core/app/app_functions.dart';
 import 'package:first_temp/core/app/type_def.dart';
-import 'package:first_temp/features/add_customer/presentation/manger/read_debtor/read_debtor_cubit.dart';
+import 'package:first_temp/features/add_debtor/presentation/manger/read_debtor/read_debtor_cubit.dart';
 import 'package:first_temp/features/debtor_quere/presentation/widget/debt_title.dart';
 import 'package:first_temp/features/debtor_quere/presentation/widget/list_of_debt.dart';
 import 'package:flutter/material.dart';

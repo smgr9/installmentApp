@@ -1,8 +1,7 @@
-import 'package:first_temp/features/add_customer/presentation/view/add_debtor_view.dart';
+import 'package:first_temp/features/add_debtor/data/models/add_debtor_model.dart';
+import 'package:first_temp/features/add_debtor/presentation/view/add_debtor_view.dart';
 import 'package:first_temp/generated/l10n.dart';
 import 'package:flutter/material.dart';
-
-import '../../add_customer/data/models/add_debtor_model.dart';
 
 List addDebt(context) {
   List<AddDebtorForm> x = [
